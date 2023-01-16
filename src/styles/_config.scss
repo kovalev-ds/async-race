@@ -1,0 +1,5 @@
+@mixin media($breackpoint) {
+  @media screen and (min-width: $breackpoint) {
+    @content;
+  }
+}
