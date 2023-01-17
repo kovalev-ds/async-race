@@ -4,3 +4,32 @@ body {
   background: #323232;
   color: #fefefe;
 }
+
+.container {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-x-2 {
+  gap: 0 0.5rem;
+}
+
+.py-2 {
+  padding-block: 0.5rem;
+}
+
+.border-b {
+  border-bottom: 2px white;
+}
+
+.border-b-dashed {
+  border-bottom-style: dashed;
+}

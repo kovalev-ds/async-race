@@ -3,9 +3,14 @@ type Action = {
   payload: any;
 };
 
-export const configure = (slices) => {
-  const state = {};
-  const views = [];
+type Slices = Record<string, (state, action: any) => any>;
+type State = Record<keyof Slices, any>;
+type View = (state: State) => void;
+
+export const configure = (slices: Slices) => {
+  const state: State = {};
+  const views: View[] = [];
+
   return {
     dispatch(action: Action) {
       Object.keys(slices).forEach((key) => {
@@ -13,7 +18,7 @@ export const configure = (slices) => {
       });
       views.forEach((view) => view(state));
     },
-    connect(view) {
+    connect(view: View) {
       views.push(view);
     },
   };

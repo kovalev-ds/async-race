@@ -1,33 +1,43 @@
 import 'minireset.css';
 import './styles/main.scss';
 
-import { Garage, Winners, Engine } from './api/index';
-import { dispatch, connect } from './store/index';
-import { UI } from './UI';
+import { connect } from './store/index';
+import { create, init, update } from './store/actions';
+import { CarRace } from './components/CarRace';
+import { Car } from './types/Car';
+import { CreateForm } from './components/CreateForm';
+import { CarList } from './components/CarList';
 
-const App = document.createElement('div');
-
-connect((state) => console.log('connected state:', state));
-
-Garage.fetchAll(1, 7).then(({ data }) => {
-  dispatch({ type: 'init', payload: data });
+connect((state) => {
+  console.log('connected state:', state);
 });
 
-Garage.createOne({ name: 'Lada Calina', color: '#fede00' }).then((data) => {
-  console.log(data);
+const [form] = CreateForm({ onSubmit: (data) => create(data) });
+const [cars] = CarList();
+
+const App = /*html*/ `
+  <div>
+    <div class="container">
+      <div>
+        <button>to garage</button>
+        <button>to winners</button>
+      </div>
+
+      <div>
+        ${form}
+      </div>
+
+      <div>
+        ${cars}
+      </div>
+     
+    </div>
+  </div>
+
+`;
+
+document.querySelector<HTMLElement>('#root')?.insertAdjacentHTML('afterbegin', App);
+
+window.addEventListener('DOMContentLoaded', () => {
+  init();
 });
-
-const button = UI.create('button', {
-  events: {
-    click: (e) => {
-      Garage.createOne({ name: 'Lada Calina', color: '#fede00' }).then((data) => {
-        dispatch({ type: 'create', payload: data.data });
-      });
-    },
-  },
-  html: 'click',
-});
-
-App.append(button);
-
-document.querySelector<HTMLElement>('#root')?.append(App);
