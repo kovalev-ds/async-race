@@ -22,6 +22,10 @@ body {
   gap: 0 0.5rem;
 }
 
+.gap-x-1 {
+  gap: 0 0.25rem;
+}
+
 .py-2 {
   padding-block: 0.5rem;
 }
@@ -32,4 +36,8 @@ body {
 
 .border-b-dashed {
   border-bottom-style: dashed;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

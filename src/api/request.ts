@@ -27,7 +27,7 @@ const enum RequestMethod {
 }
 
 export const request = async <T>(endpoint: string, options?: Partial<RequestOptions>): Promise<ResponseDTO<T>> => {
-  console.log('Requesting data...', options);
+  console.log('Requesting data...');
 
   const url = new URL(endpoint);
 

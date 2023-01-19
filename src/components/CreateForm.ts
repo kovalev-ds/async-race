@@ -11,9 +11,8 @@ export const CreateForm = ({ onSubmit }: CreateFormProps) => {
     </form>
   `;
 
-  const form = Promise.resolve().then(() => document.querySelector<HTMLFormElement>('#create-form'));
-
-  form.then((el) => {
+  Promise.resolve().then(() => {
+    const el = document.querySelector<HTMLFormElement>('#create-form');
     el?.addEventListener('submit', (e) => {
       e.preventDefault();
       const target = e.target as HTMLFormElement;
